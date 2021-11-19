@@ -10,7 +10,7 @@ const userService = require('../services/User')
 const UserService = new userService(User)
 
 function generateToken(params = {}) {
-  return jwt.sign(params, authConfig.secret, {
+  return jwt.sign(params, process.env.SECRET, {
     expiresIn: 86400,
   })
 }

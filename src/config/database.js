@@ -1,8 +1,8 @@
 module.exports = {
   dialect: 'postgres',
-  host: 'fanny.db.elephantsql.com',
+  host: process.env.PG_HOST,
   port: 5432,
-  database: 'kcootzam',
-  username: 'kcootzam',
-  password: 'aVxAJLh5-5CfMAYgkAlv78EI4oMFrjWr'
+  database: process.env.PG_DATABASE,
+  username: process.env.PG_USERNAME,
+  password: process.env.PG_PASSWORD
 }
