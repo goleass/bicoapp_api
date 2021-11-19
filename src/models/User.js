@@ -7,7 +7,11 @@ const User = (sequelize, DataTypes) => {
       type: DataTypes.UUID,
       primaryKey: true
     },
-    name: {
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false
     },

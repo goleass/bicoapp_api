@@ -3,7 +3,7 @@ const cors = require('cors')
 const routers = require('./api')
 const { sequelize } = require('./models')
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 const app = express()
 
 app.use(cors())

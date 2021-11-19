@@ -18,14 +18,21 @@ function generateToken(params = {}) {
 router.post('/register', async (req, res) => {
   const { email } = req.body
 
-  if(!email)
-    res.status(400).send({ error: "Os campos não foram preenchidos corretamente." })
+  if (!email)
+    res.status(200).send({ error: "Os campos não foram preenchidos corretamente." })
 
   try {
-    if (await UserService.findOne({ email }))
-      return res.status(400).send({ error: "Usuário já existe." })
+    if (await UserService.findOne({ email: email.toLowerCase() }))
+      return res.status(200).send({ error: "Usuário já existe." })
 
-    const user = await UserService.add(req.body)
+    const data = {
+      ...req.body,
+      first_name: req.body.first_name.toLowerCase(),
+      last_name: req.body.last_name.toLowerCase(),
+      email: req.body.email.toLowerCase()
+    }
+
+    const user = await UserService.add(data)
 
     user.password = undefined
 
@@ -42,7 +49,7 @@ router.post('/register', async (req, res) => {
 router.post('/authenticate', async (req, res) => {
   const { email, password } = req.body
 
-  const user = await UserService.findOne({ email })
+  const user = await UserService.findOne({ email: email.toLowerCase() })
 
   if (!user)
     return res.status(401).json({ error: "Usuário ou senha inválidos." })
