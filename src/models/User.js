@@ -1,11 +1,12 @@
-const bcrypt = require('bcryptjs')
-const { v4: uuid } = require('uuid')
-
 const User = (sequelize, DataTypes) => {
   const user = sequelize.define('User', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true
+    },
+    identity_number: {
+      type: DataTypes.STRING,
+      allowNull: true
     },
     first_name: {
       type: DataTypes.STRING,
@@ -15,6 +16,14 @@ const User = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,17 +32,18 @@ const User = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    state: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    city: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   },
     {
-      tableName: 'user',
-      hooks: {
-        beforeValidate: async (user, options) => {
-          const hash = await bcrypt.hash(user.password, 10)
-          user.password = hash;
-          user.id = uuid();
-        },
-      }
+      tableName: 'user'
     })
 
   return user

@@ -24,8 +24,23 @@ class UserService {
 
   async findOne(params) {
     try {
-      const user = await this.User.findOne({where: params})
+      const user = await this.User.findOne({ where: params })
       return user
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async update(params, data) {
+    try {
+      const user = await this.User.update(
+        { ...data },
+        { where: params }
+      )
+
+      const newUser = this.findOne(params)
+
+      return newUser
     } catch (error) {
       throw error
     }
