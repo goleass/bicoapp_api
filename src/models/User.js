@@ -20,6 +20,10 @@ const User = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     },
+    avatar_url: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     phone: {
       type: DataTypes.STRING,
       allowNull: true
