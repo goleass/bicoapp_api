@@ -37,19 +37,6 @@ router.get('/', async (req, res) => {
     res.status(400).send({ error: "Falha ao encontrar skills." })
   }
 })
-router.get('/all', async (req, res) => {
-  try {
-    const skills = await SkillService.findAll(null, User) || []
-
-    if (skills.length == 0)
-      return res.status(200).send({ error: "Nenhuma skill foi encontrada." })
-
-    return res.send(skills)
-  }
-  catch (error) {
-    res.status(400).send({ error: "Falha ao encontrar skills." })
-  }
-})
 
 router.post('/new-skill', async (req, res) => {
   try {
