@@ -3,6 +3,10 @@ const router = express.Router()
 const { User } = require('../models')
 const userService = require('../services/User')
 
+const authMiddleware = require('../middlewares/auth')
+
+router.use(authMiddleware);
+
 const UserService = new userService(User)
 
 router.get('/', async (req, res) => {
