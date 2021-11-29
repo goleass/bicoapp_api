@@ -10,7 +10,6 @@ router.use(authMiddleware);
 const UserService = new userService(User)
 
 router.get('/', async (req, res) => {
-  console.log(req.query)
 
   try {
     const user = await UserService.findOne({ ...req.query })

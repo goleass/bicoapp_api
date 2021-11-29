@@ -17,7 +17,6 @@ class UserService {
       const user = await this.User.create(DTO)
       return user
     } catch (error) {
-      console.log(error)
       throw error
     }
   }

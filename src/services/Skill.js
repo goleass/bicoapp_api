@@ -45,7 +45,6 @@ class SkillService {
 
       return skill
     } catch (error) {
-      console.log(error)
       throw error
     }
   }
