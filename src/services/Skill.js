@@ -1,5 +1,3 @@
-const { User } = require("../models")
-
 class SkillService {
   constructor(SkillModel) {
     this.Skill = SkillModel
@@ -32,10 +30,19 @@ class SkillService {
     }
   }
 
+  async destroy(params) {
+    try {
+      const skill = await this.Skill.destroy({ where: params })
+      return skill
+    } catch (error) {
+      throw error
+    }
+  }
+
   async findAll(params, include = null) {
     try {
       const skill = await this.Skill.findAll({ where: params, include })
-      
+
       return skill
     } catch (error) {
       console.log(error)
@@ -49,6 +56,8 @@ class SkillService {
         { ...data },
         { where: params }
       )
+
+      console.error(skill)
 
       const newSkill = this.findOne(params)
 
